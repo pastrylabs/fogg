@@ -2,7 +2,7 @@ package templates
 
 import (
 	"github.com/chanzuckerberg/fogg/config/v1"
-	"github.com/gobuffalo/packr"
+	"github.com/gobuffalo/packr/v2"
 )
 
 type T struct {

@@ -18,7 +18,7 @@ import (
 	"github.com/chanzuckerberg/fogg/plan"
 	"github.com/chanzuckerberg/fogg/templates"
 	"github.com/chanzuckerberg/fogg/util"
-	"github.com/gobuffalo/packr"
+	"github.com/gobuffalo/packr/v2"
 	getter "github.com/hashicorp/go-getter"
 	"github.com/hashicorp/hcl2/hclwrite"
 	"github.com/sirupsen/logrus"

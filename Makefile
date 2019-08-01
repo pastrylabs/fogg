@@ -9,8 +9,7 @@ all: test install
 setup: ## setup development dependencies
 	go get github.com/rakyll/gotest
 	go install github.com/rakyll/gotest
-	go get -u github.com/gobuffalo/packr/...
-	go install github.com/gobuffalo/packr/packr
+	./.godownloader-packr2.sh v2.5.2
 	curl -L https://raw.githubusercontent.com/chanzuckerberg/bff/master/download.sh | sh
 	curl -sfL https://install.goreleaser.com/github.com/golangci/golangci-lint.sh | sh
 
@@ -21,8 +20,8 @@ lint: ## run the fast go linters
 TEMPLATES := $(shell find templates -not -name "*.go")
 
 templates/a_templates-packr.go: $(TEMPLATES)
-	packr clean -v
-	packr -v
+	./bin/packr2 clean -v
+	./bin/packr2 -v
 
 packr: templates/a_templates-packr.go ## run the packr tool to generate our static files
 
