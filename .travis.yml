@@ -32,7 +32,7 @@ jobs:
       script: |
         set -e
         export GO111MODULE=on
-        make deps
+        travis_retry make deps
         if [ "$(git status --porcelain)" != "" ]; then
           echo "git tree is dirty after running make deps"
           echo "ensure you run make deps on your branch"
