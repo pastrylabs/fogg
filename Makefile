@@ -4,6 +4,8 @@ DIRTY=false
 # TODO add release flag
 GO_PACKAGE=$(shell go list)
 LDFLAGS=-ldflags "-w -s -X $(GO_PACKAGE)/util.GitSha=${SHA} -X $(GO_PACKAGE)/util.Version=${VERSION} -X $(GO_PACKAGE)/util.Dirty=${DIRTY}"
+export GOFLAGS=-mod=vendor
+export GO111MODULE=on
 
 all: test install
 
@@ -46,14 +48,13 @@ build: packr ## build the binary
 	go build ${LDFLAGS} .
 
 deps:
-	go get .
 	go mod tidy
 	go mod vendor
 
 coverage: ## run the go coverage tool, reading file coverage.out
 	go tool cover -html=coverage.out
 
-test: packr ## run tests
+test: deps packr ## run tests
 	gotest -cover ./...
 
 test-offline: packr  ## run only tests that don't require internet
